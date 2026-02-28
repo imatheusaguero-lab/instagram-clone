@@ -9,9 +9,8 @@ export default function Header(props){
    
     const [file,setFile] = useState(null);
 
-    useEffect(()=>{
-        
-    }, [])
+    
+
     function errorMessage(error){
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -30,10 +29,11 @@ export default function Header(props){
             const user = userCredential.user;
             props.setUser(user.displayName);
             alert("Logado com sucesso!")
+            window.location.href = "/";
             // ...
         })
         .catch((error) => {
-            errorMessage(error);
+            alert(error.message);
         });    
     }
 
@@ -68,6 +68,7 @@ export default function Header(props){
         })
     }
 
+
     function abrirModalCriarConta(e){
         e.preventDefault();
 
@@ -91,6 +92,14 @@ export default function Header(props){
     function fecharModalUpload(e){
         let modal = document.querySelector('.modalUpload');
         modal.style.display = "none";
+    }
+
+    function deslogar(e){
+        e.preventDefault();
+        auth.signOut().then(function(val){
+            props.setUser(null);
+            window.location.href="/"
+        });
     }
 
     function uploadPost(e){
@@ -122,6 +131,9 @@ export default function Header(props){
                 document.getElementById('form-upload').reset();
 
                 alert('Upload realizado com sucesso!')
+
+                document.getElementById('form-upload').reset();
+                fecharModalUpload();
             })
             
         })
@@ -151,7 +163,7 @@ export default function Header(props){
                         <progress id="progress-upload" value={progress}></progress>
                         <input id="titulo-upload" type="text" placeholder="Nome da sua foto..."></input>
                         <input onChange={(e)=>setFile(e.target.files[0])} type="file" name="file"/>
-                        <input type="submit" value="Criar Conta!"></input>
+                        <input type="submit" value="Postar no Instagram!"></input>
                     </form>
                 </div>
             </div>
@@ -173,6 +185,7 @@ export default function Header(props){
                 <div className='header__logadoInfo'>
                     <span>Olá <b>{props.user}</b></span>
                     <a onClick={(e)=>abrirModalUpload(e)} href='#'>Postar!</a>
+                    <a onClick={(e)=>deslogar(e)}>Deslogar!</a>
                 </div>
             ://FALSO
                 <div onSubmit={(e)=>logar(e)} className='header__loginForm'>

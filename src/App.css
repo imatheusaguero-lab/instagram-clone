@@ -186,3 +186,47 @@ body {
   line-height: 30px;
   background-color: #0095F6;
 }
+
+.postSingle{
+  background-color: white;
+  max-width: 700px;
+  margin: 10px auto;
+  padding-bottom: 40px ;
+}
+
+.postSingle img{
+  width: 100%;
+}
+
+.postSingle p{
+  padding: 10px
+}
+
+.postSingle textarea{
+  width: 100%;
+  height: 120px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.postSingle input[type=submit]{
+  background-color: #0095F6;
+  cursor: pointer;
+  color: white;
+  border: 0px;
+  padding: 8px 10px;
+}
+
+.coments{
+  margin-left: 20px;
+}
+
+.coments h2{
+  color: #4b4b4b;
+  border-bottom: 1px solid #4b4b4b;
+  padding: 9px 0;
+}
+
+.comment-single p{
+  font-size: 14px;
+}
